@@ -356,7 +356,7 @@ transform:scale(1.05);
  <span id="treasure">23</span> / 50
 </div>
 <div class="treasure-bar-bg">
-    <div class="treasure-bar"></div>
+<div class="treasure-bar" id="treasureBar"></div>
 </div>
 </div>
 </div>
@@ -432,7 +432,14 @@ if(amount > 0 && hp >= 80){
     document.getElementById(
     "treasure"
     ).innerText = treasure;
-
+    document.getElementById(
+"treasureBar"
+).style.width =
+(treasure / 50 * 100) + "%";
+document.getElementById(
+"treasureBar"
+).style.width =
+(treasure / 50 * 100) + "%";
     localStorage.setItem(
     "treasure",
     treasure
@@ -528,7 +535,9 @@ function openTreasure(){
     );
 
     treasure = 0;
-
+document.getElementById(
+"treasureBar"
+).style.width = "0%";
     document.getElementById(
     "treasure"
     ).innerText = treasure;
