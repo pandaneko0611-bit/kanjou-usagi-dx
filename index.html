@@ -403,13 +403,19 @@ placeholder="今日のひとこと🐰"
 </div>
 <div class="collection">
 <div class="collection-card">
-<div class="emoji">
+<div class="book-card"
+onclick="showBookInfo('猫吸いうさぎ')">
+
 🐰🐈
-</div>
+<br>
 猫吸いうさぎ
+
 </div>
-<div class="collection-card">
-🐰🍈🍞<br>
+<div class="book-card"
+onclick="showBookInfo('メロンパンうさぎ')">
+
+🐰🍈🍞
+<br>
 メロンパンうさぎ
 </div>
 <div class="collection-card">
@@ -654,6 +660,27 @@ function renderDiary(){
     document.getElementById(
         "diaryList"
     ).innerHTML = html;
+}
+function showBookInfo(name){
+
+const data = {
+
+"猫吸いうさぎ":
+"🐰🐈 猫ちゃん補給で出現。吸うほど元気になる。",
+
+"メロンパンうさぎ":
+"🐰🍈🍞 メロンパンを見ると目が輝く。",
+
+"感情うさぎ":
+"🐰💖 感情うさぎの本体。",
+
+"門番うさぎ":
+"🐰🚪 感情うさぎを守る門番。"
+
+};
+
+alert(data[name]);
+
 }
 </script>
 </body>
