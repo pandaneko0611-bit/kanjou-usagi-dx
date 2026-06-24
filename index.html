@@ -257,7 +257,29 @@ linear-gradient(
 border-radius:999px;
 
 }
+.diary-box{
+    margin-top:20px;
+}
 
+#memo{
+    width:80%;
+    padding:10px;
+    border-radius:12px;
+    border:none;
+}
+
+#diaryList{
+    margin-top:20px;
+    text-align:left;
+}
+
+.diary-card{
+    background:white;
+    padding:12px;
+    margin-top:10px;
+    border-radius:12px;
+}
+    
 /* 図鑑カード強化 */
 
 .collection-card{
@@ -359,6 +381,20 @@ transform:scale(1.05);
 <div class="treasure-bar" id="treasureBar"></div>
 </div>
 </div>
+</div>
+<div class="diary-box">
+
+<input
+id="memo"
+placeholder="今日のひとこと🐰"
+>
+
+<button onclick="saveDiary()">
+📅 日記保存
+</button>
+
+</div>
+<div id="diaryList">
 </div>
 <div class="card">
 <div class="section-title">
@@ -500,6 +536,7 @@ parseInt(
 document.getElementById("hp").innerText
 )
 );
+renderDiary();
 function openTreasure(){
 
     const rewards = [
@@ -550,6 +587,73 @@ document.getElementById(
 document.getElementById(
 "treasure"
 ).innerText = treasure;
+function saveDiary(){
+
+    const hp =
+    document.getElementById("hp")
+    .innerText;
+
+    const memo =
+    document.getElementById("memo")
+    .value;
+
+    const today =
+    new Date()
+    .toLocaleDateString();
+
+    const diary =
+    {
+        date:today,
+        hp:hp,
+        memo:memo
+    };
+
+    let diaries =
+    JSON.parse(
+        localStorage.getItem(
+            "diaries"
+        )
+    ) || [];
+
+    diaries.unshift(diary);
+
+    localStorage.setItem(
+        "diaries",
+        JSON.stringify(diaries)
+    );
+
+    renderDiary();
+
+    document.getElementById(
+        "memo"
+    ).value = "";
+}
+function renderDiary(){
+
+    let diaries =
+    JSON.parse(
+        localStorage.getItem(
+            "diaries"
+        )
+    ) || [];
+
+    let html = "";
+
+    diaries.forEach(d=>{
+
+        html += `
+        <div class="diary-card">
+        📅 ${d.date}<br>
+        ❤️ HP ${d.hp}<br>
+        💬 ${d.memo}
+        </div>
+        `;
+    });
+
+    document.getElementById(
+        "diaryList"
+    ).innerHTML = html;
+}
 </script>
 </body>
 </html>
