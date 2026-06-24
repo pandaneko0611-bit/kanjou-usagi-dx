@@ -163,14 +163,13 @@ left:130%;
 }
 .collection{
     display:grid;
-    grid-template-columns:
-    repeat(2,1fr);
-    gap:10px;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
 }
 .collection-card{
     background:white;
     border-radius:18px;
-    padding:16px;
+    padding:12px;
     text-align:center;
 }
 /* キラキラ背景 */
@@ -425,11 +424,15 @@ onclick="showBookInfo('温泉うさぎ')">
 温泉うさぎ
 </div>
 <div class="book-card">
+<div id="birthdayRabbit">
 ？？？
+</div>
 </div>
 
 <div class="book-card">
+<div id="kingRabbit">
 ？？？
+</div>
 </div>
 
 <div class="book-card">
@@ -449,6 +452,21 @@ VIPうさぎ
 <br>
 奇跡うさぎ
 </div>
+<div class="book-card"
+onclick="showBookInfo('感情うさぎ')">
+
+🐰💓
+<br>
+感情うさぎ
+</div>
+<div class="book-card"
+onclick="showBookInfo('門番うさぎ')">
+
+🐰🚪
+<br>
+門番うさぎ
+</div>
+
 </div>
 </div>
 </div>
@@ -568,6 +586,7 @@ parseInt(
 document.getElementById("hp").innerText
 )
 );
+unlockRare();
 renderDiary();
 function openTreasure(){
 
@@ -709,14 +728,35 @@ const data = {
 "🌈🐰 出会えたらラッキー。",
 
 "感情うさぎ":
-"🐰💖 感情うさぎの本体。",
+"🐰💓大好きな人には全力💓 感情100%で生きるうさぎ。",
 
 "門番うさぎ":
-"🐰🚪 感情うさぎを守る門番。"
+"🛡️🐰感情うさぎを守る警備隊長。簡単には心を開かせない。",
 
 };
 
 alert(data[name]);
+
+}
+function unlockRare(){
+
+if(localStorage.getItem("treasureCount") >= 50){
+
+document.getElementById(
+"birthdayRabbit"
+).innerHTML =
+"🐰🎂<br>お誕生日うさぎ";
+
+}
+
+if(localStorage.getItem("treasureCount") >= 100){
+
+document.getElementById(
+"kingRabbit"
+).innerHTML =
+"👑🐰<br>王様うさぎ";
+
+}
 
 }
 </script>
