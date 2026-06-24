@@ -353,7 +353,7 @@ transform:scale(1.05);
 🎁
 </div>
 <div class="progress-text">
-🎀 23 / 50
+ <span id="treasure">23</span> / 50
 </div>
 <div class="treasure-bar-bg">
     <div class="treasure-bar"></div>
@@ -385,7 +385,10 @@ transform:scale(1.05);
 </div>
 </div>
 <script>
-
+let treasure =
+parseInt(
+localStorage.getItem("treasure")
+) || 23;
 let savedHP =
 localStorage.getItem(
 "rabbitHP"
@@ -422,6 +425,18 @@ document.getElementById("hp");
 let hp =
 parseInt(hpElement.innerText);
 hp += amount;
+if(amount > 0 && hp >= 80){
+    treasure++;
+    
+    document.getElementById(
+    "treasure"
+    ).innerText = treasure;
+
+    localStorage.setItem(
+    "treasure",
+    treasure
+    );
+}
 if(hp > 100){
     hp = 100;
 }
@@ -473,6 +488,9 @@ parseInt(
 document.getElementById("hp").innerText
 )
 );
+document.getElementById(
+"treasure"
+).innerText = treasure;
 </script>
 </body>
 </html>
