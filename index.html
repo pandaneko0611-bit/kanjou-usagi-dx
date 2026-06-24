@@ -426,8 +426,9 @@ let hp =
 parseInt(hpElement.innerText);
 hp += amount;
 if(amount > 0 && hp >= 80){
+
     treasure++;
-    
+
     document.getElementById(
     "treasure"
     ).innerText = treasure;
@@ -436,6 +437,10 @@ if(amount > 0 && hp >= 80){
     "treasure",
     treasure
     );
+
+    if(treasure >= 50){
+        openTreasure();
+    }
 }
 if(hp > 100){
     hp = 100;
@@ -488,6 +493,51 @@ parseInt(
 document.getElementById("hp").innerText
 )
 );
+function openTreasure(){
+
+    const rewards = [
+
+        "🍈 メロンパン券",
+
+        "🐈 猫ちゃんタイム",
+
+        "💖 感情うさぎハグ券",
+
+        "♨️ 彼温泉入浴券",
+
+        "🎀 リボン10個",
+
+        "🌟 今日はラッキーデー",
+
+        "🍰 ご褒美ケーキ券"
+
+    ];
+
+    const reward =
+    rewards[
+        Math.floor(
+            Math.random() *
+            rewards.length
+        )
+    ];
+
+    alert(
+        "🎁✨宝箱オープン✨🎁\n\n" +
+        "獲得報酬\n\n" +
+        reward
+    );
+
+    treasure = 0;
+
+    document.getElementById(
+    "treasure"
+    ).innerText = treasure;
+
+    localStorage.setItem(
+    "treasure",
+    treasure
+    );
+}
 document.getElementById(
 "treasure"
 ).innerText = treasure;
