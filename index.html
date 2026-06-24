@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🐰感情うさぎ</title>
+<style>
+:root{
+    --pink:#ff8fb8;
+    --light:#fff7fa;
+    --glass:rgba(255,255,255,0.75);
+}
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+body{
+    background:linear-gradient(
+        180deg,
+        #fff7fa 0%,
+        #ffeef5 100%
+    );
+    font-family:-apple-system,BlinkMacSystemFont,sans-serif;
+    min-height:100vh;
+    padding:24px;
+    color:#555;
+}
+.container{
+    max-width:500px;
+    margin:auto;
+}
+.card{
+    background:var(--glass);
+    backdrop-filter:blur(15px);
+    border-radius:28px;
+    padding:24px;
+    margin-bottom:20px;
+    box-shadow:
+    0 10px 30px rgba(255,143,184,0.15);
+}
+.rabbit{
+    text-align:center;
+    font-size:120px;
+    animation:float 3s ease-in-out infinite;
+}
+@keyframes float{
+    0%{transform:translateY(0);}
+    50%{transform:translateY(-10px);}
+    100%{transform:translateY(0);}
+}
+@keyframes glow{
+0%{
+box-shadow:0 0 5px #ff8fb8;
+}
+50%{
+box-shadow:0 0 20px #ff8fb8;
+}
+100%{
+box-shadow:0 0 5px #ff8fb8;
+}
+}
+
+.title{
+    text-align:center;
+    font-size:30px;
+    font-weight:bold;
+    color:var(--pink);
+    margin-top:10px;
+    text-shadow:
+    0 0 10px rgba(255,143,184,.4);
+}
+.subtitle{
+    text-align:center;
+    color:#999;
+    font-size:16px;
+    margin-top:8px;
+    margin-bottom:12px;
+}
+.hp{
+    text-align:center;
+    font-size:42px;
+    font-weight:bold;
+    color:var(--pink);
+    margin-top:10px;
+}
+.bar-bg{
+    background:#ffe1ec;
+    height:18px;
+    border-radius:999px;
+    overflow:hidden;
+    margin-top:15px;
+}
+.bar{
+    width:78%;
+    height:100%;
+    border-radius:999px;
+    background:linear-gradient(
+    90deg,
+    #ffb3cf,
+    #ff8fb8
+    );
+    animation: glow 2s infinite;
+    position:relative;
+    overflow:hidden;
+}
+.bar::after{
+content:"";
+position:absolute;
+top:0;
+left:-30%;
+width:30%;
+height:100%;
+background:
+rgba(255,255,255,.4);
+transform:skewX(-20deg);
+animation:
+shine 3s infinite;
+}
+@keyframes shine{
+0%{
+left:-30%;
+}
+100%{
+left:130%;
+}
+}
+.speech{
+    background:white;
+    border-radius:20px;
+    padding:14px;
+    margin-top:20px;
+    text-align:center;
+    position:relative;
+}
+.speech:after{
+    content:"";
+    position:absolute;
+    left:50%;
+    bottom:-10px;
+    width:20px;
+    height:20px;
+    background:white;
+    transform:
+    translateX(-50%)
+    rotate(45deg);
+}
+.message{
+    font-size:18px;
+}
+.section-title{
+    color:var(--pink);
+    font-weight:bold;
+    margin-bottom:15px;
+}
+.treasure{
+    text-align:center;
+    font-size:50px;
+}
+.progress-text{
+    text-align:center;
+    margin-top:10px;
+}
+.collection{
+    display:grid;
+    grid-template-columns:
+    repeat(2,1fr);
+    gap:10px;
+}
+.collection-card{
+    background:white;
+    border-radius:18px;
+    padding:16px;
+    text-align:center;
+}
+/* キラキラ背景 */
+
+body::before{
+content:””;
+
+position:fixed;
+inset:0;
+pointer-events:none;
+background:
+radial-gradient(
+    circle at 20% 20%,
+    rgba(255,255,255,.8),
+    transparent 15%
+),
+radial-gradient(
+    circle at 80% 30%,
+    rgba(255,255,255,.6),
+    transparent 12%
+),
+radial-gradient(
+    circle at 60% 80%,
+    rgba(255,255,255,.7),
+    transparent 10%
+);
+
+}
+
+/* 本物の吹き出し */
+
+.speech{
+background:white;
+
+border-radius:20px;
+padding:18px;
+margin-top:20px;
+position:relative;
+text-align:center;
+
+border:3px solid #ffd2e4;
+box-shadow:
+0 5px 15px rgba(255,143,184,.15);
+
+}
+
+.speech::after{
+content:””;
+
+position:absolute;
+bottom:-10px;
+left:50%;
+width:20px;
+height:20px;
+background:white;
+transform:
+translateX(-50%)
+rotate(45deg);
+
+}
+
+/* 宝箱ゲージ */
+
+.treasure-bar-bg{
+background:#ffe3ef;
+
+height:16px;
+border-radius:999px;
+overflow:hidden;
+margin-top:15px;
+
+}
+
+.treasure-bar{
+height:100%;
+
+width:70%;
+background:
+linear-gradient(
+90deg,
+#ffb3cf,
+#ff8fb8
+);
+border-radius:999px;
+
+}
+
+/* 図鑑カード強化 */
+
+.collection-card{
+background:white;
+border-radius:20px;
+padding:18px;
+text-align:center;
+box-shadow:
+0 5px 15px rgba(0,0,0,.05);
+transition:.3s;
+.collection-card:active{
+transform:scale(.95);
+}
+}
+
+.collection-card:hover{
+transform:translateY(-5px);
+}
+.collection-card .emoji{
+font-size:38px;
+margin-bottom:8px;
+}
+.actions{
+display:flex;
+flex-wrap:wrap;
+gap:10px;
+justify-content:center;
+margin-top:20px;
+}
+
+.actions button{
+border:none;
+padding:12px 16px;
+border-radius:999px;
+background:#ffd6e6;
+color:#666;
+font-size:16px;
+cursor:pointer;
+transition:.3s;
+}
+
+.actions button:hover{
+transform:scale(1.05);
+}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="card">
+<div class="rabbit" id="rabbit">
+🐰💓
+</div>
+<div class="title">
+感情うさぎ
+</div>
+<div class="subtitle">
+今日のこころの様子
+</div>
+<div class="hp" id="hp">
+78%
+</div>
+<div class="bar-bg">
+<div class="bar" id="bar"></div>
+</div>
+<div class="actions">
+<button onclick="changeHP(15)">
+🐈 猫ちゃん補給
+</button>
+<button onclick="changeHP(10)">
+🍌 セロトニン補給
+</button>
+<button onclick="changeHP(8)">
+🍈🍞 メロンパン
+</button>
+<button onclick="changeHP(-15)">
+💼 お仕事疲れた
+</button>
+<button onclick="changeHP(-20)">
+💊 頭痛
+</button>
+</div>
+<div class="speech">
+<div class="message" id="message">
+💬 今日も頑張った〜💓
+</div>
+</div>
+</div>
+<div class="card">
+<div class="section-title">
+🎁 宝箱
+</div>
+<div class="treasure">
+🎁
+</div>
+<div class="progress-text">
+🎀 23 / 50
+</div>
+<div class="treasure-bar-bg">
+    <div class="treasure-bar"></div>
+</div>
+</div>
+</div>
+<div class="card">
+<div class="section-title">
+📚 図鑑
+</div>
+<div class="collection">
+<div class="collection-card">
+<div class="emoji">
+🐰🐈
+</div>
+猫吸いうさぎ
+</div>
+<div class="collection-card">
+🐰🍈🍞<br>
+メロンパンうさぎ
+</div>
+<div class="collection-card">
+？？？
+</div>
+<div class="collection-card">
+？？？
+</div>
+</div>
+</div>
+</div>
+<script>
+/*
+let savedHP =
+localStorage.getItem(
+"rabbitHP"
+);
+if(savedHP)
+    document.getElementById("hp")
+    .innerText =
+    savedHP + "%";
+    updateRabbit(
+        parseInt(savedHP)
+    );
+}
+*/
+const hpText =
+document.getElementById("hp").innerText;
+const hp =
+parseInt(hpText);
+const rabbit =
+document.getElementById("rabbit");
+if(hp >= 80){
+    rabbit.innerHTML = "🐰💖";
+}
+else if(hp >= 50){
+    rabbit.innerHTML = "🐰🎀";
+}
+else if(hp >= 30){
+    rabbit.innerHTML = "🐰🥺";
+}
+else{
+    rabbit.innerHTML = "🐰🫠";
+}
+function changeHP(amount){
+let hpElement =
+document.getElementById("hp");
+let hp =
+parseInt(hpElement.innerText);
+hp += amount;
+if(hp > 100){
+    hp = 100;
+}
+
+if(hp < 0){
+    hp = 0;
+}
+hpElement.innerText =
+hp + "%";
+updateRabbit(hp);
+localStorage.setItem(
+"rabbitHP",
+hp
+);
+}
+
+function updateRabbit(hp){
+    const rabbit =
+ document.getElementById("rabbit");
+    const message =
+document.getElementById("message");
+const bar =
+document.getElementById("bar");
+bar.style.width =
+hp + "%";
+    if(hp >= 80){
+        rabbit.innerHTML = "🐰💖";
+        message.innerHTML =
+        "💖 今日はふわふわ絶好調〜";
+    }
+    else if(hp >= 50){
+        rabbit.innerHTML = "🐰🎀";
+        message.innerHTML =
+        "🎀 今日も頑張った〜";
+    }
+    else if(hp >= 30){
+        rabbit.innerHTML = "🐰🥺";
+        message.innerHTML =
+        "🥺 なでなで募集中〜";
+    }
+    else{
+        rabbit.innerHTML = "🐰🫠";
+        message.innerHTML =
+        "🫠 お布団にころん〜";
+    }
+}
+updateRabbit(
+parseInt(
+document.getElementById("hp").innerText
+)
+);
+</script>
+</body>
+</html>
