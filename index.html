@@ -384,6 +384,25 @@ animation:birthdayGlow 1.2s infinite;
 </button>
 </div>
 <div class="speech">
+<div class="card">
+
+<div class="section-title">
+🐰 今日のおともだち
+</div>
+
+<div
+id="friendRabbit"
+style="font-size:70px;text-align:center;">
+🐰💓
+</div>
+
+<div
+id="friendName"
+style="text-align:center;margin-top:10px;">
+感情うさぎ
+</div>
+
+</div>
 <div class="message" id="message">
 💬 今日も頑張った〜💓
 </div>
@@ -424,7 +443,13 @@ placeholder="今日のひとこと🐰"
 </div>
 <div class="collection">
 <div class="book-card"
-onclick="showBookInfo('猫吸いうさぎ')">
+onclick="
+showBookInfo('猫吸いうさぎ');
+setFriend(
+'🐰🐈',
+'猫吸いうさぎ'
+)
+"
 
 🐰🐈
 <br>
@@ -432,14 +457,19 @@ onclick="showBookInfo('猫吸いうさぎ')">
 
 </div>
 <div class="book-card"
-onclick="showBookInfo('メロンパンうさぎ')">
-
+onclick="
+showBookInfo('メロンパンうさぎ');
+setFriend(
+'🐰🍈🍞',
+'メロンパンうさぎ'
+)
+"
 🐰🍈🍞
 <br>
 メロンパンうさぎ
 </div>
 <div class="book-card"
-onclick="showBookInfo('温泉うさぎ')">
+onclick="showBookInfo('温泉うさぎ');setFriend('🐰♨️','温泉うさぎ')">
 🐰♨️
 <br>
 温泉うさぎ
@@ -481,14 +511,26 @@ VIPうさぎ
 奇跡うさぎ
 </div>
 <div class="book-card"
-onclick="showBookInfo('感情うさぎ')">
+onclick="
+showBookInfo('感情うさぎ');
+setFriend(
+'🐰💓',
+'感情うさぎ'
+)
+"
 
 🐰💓
 <br>
 感情うさぎ
 </div>
 <div class="book-card"
-onclick="showBookInfo('門番うさぎ')">
+onclick="
+showBookInfo('門番うさぎ');
+setFriend(
+'🐰🚪',
+'門番うさぎ'
+)
+"
 
 🐰🚪
 <br>
@@ -612,6 +654,25 @@ document.getElementById("hp").innerText
 checkRareUnlock();
 unlockRare();
 renderDiary();
+const savedFriend =
+localStorage.getItem("friendEmoji");
+
+const savedName =
+localStorage.getItem("friendName");
+
+if(savedFriend){
+
+document.getElementById(
+"friendRabbit"
+).innerHTML =
+savedFriend;
+
+document.getElementById(
+"friendName"
+).innerHTML =
+savedName;
+
+}
 function openTreasure(){
 let treasureOpened =
 parseInt(localStorage.getItem("treasureOpened")) || 0;
@@ -879,6 +940,27 @@ newMark.style.display="none";
         "👑<br>王様うさぎ";
 
     }
+}
+function setFriend(emoji,name){
+
+document.getElementById(
+"friendRabbit"
+).innerHTML = emoji;
+
+document.getElementById(
+"friendName"
+).innerHTML = name;
+
+localStorage.setItem(
+"friendEmoji",
+emoji
+);
+
+localStorage.setItem(
+"friendName",
+name
+);
+
 }
 </script>
 </body>
