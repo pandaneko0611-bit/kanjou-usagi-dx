@@ -324,6 +324,28 @@ transition:.3s;
 .actions button:hover{
 transform:scale(1.05);
 }
+@keyframes birthdayGlow{
+
+0%{
+transform:scale(1);
+filter:drop-shadow(0 0 0px gold);
+}
+
+50%{
+transform:scale(1.08);
+filter:drop-shadow(0 0 18px gold);
+}
+
+100%{
+transform:scale(1);
+filter:drop-shadow(0 0 0px gold);
+}
+
+}
+
+.birthday{
+animation:birthdayGlow 1.2s infinite;
+}
 </style>
 </head>
 <body>
@@ -584,9 +606,21 @@ parseInt(
 document.getElementById("hp").innerText
 )
 );
+checkRareUnlock();
 unlockRare();
 renderDiary();
 function openTreasure(){
+let treasureOpened =
+parseInt(localStorage.getItem("treasureOpened")) || 0;
+
+treasureOpened++;
+
+localStorage.setItem(
+"treasureOpened",
+treasureOpened
+);
+
+checkRareUnlock();
 
     const rewards = [
 
@@ -754,7 +788,48 @@ document.getElementById(
 ).innerHTML =
 "👑🐰<br>王様うさぎ";
 
-}
+function checkRareUnlock(){
+
+    const today = new Date();
+
+    const month = today.getMonth()+1;
+    const day = today.getDate();
+
+    if(month==6 && day==11){
+
+        document.getElementById("birthdayRabbit").innerHTML =
+        "🎂<br>お誕生日うさぎ";
+        document
+.getElementById("birthdayRabbit")
+.classList.add("birthday");
+
+        let birthdayDone =
+        localStorage.getItem("birthday2026");
+
+        if(!birthdayDone){
+
+            alert(
+            "🎉✨Happy Birthday✨🎉\n\n🐰💖\nお誕生日うさぎが\n図鑑に仲間入りしたよ！"
+            );
+
+            localStorage.setItem(
+            "birthday2026",
+            "yes"
+            );
+
+        }
+
+    }
+
+    let opened =
+    parseInt(localStorage.getItem("treasureOpened")) || 0;
+
+    if(opened>=100){
+
+        document.getElementById("kingRabbit").innerHTML =
+        "👑<br>王様うさぎ";
+
+    }
 
 }
 </script>
