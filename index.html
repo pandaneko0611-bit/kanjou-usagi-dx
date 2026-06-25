@@ -649,7 +649,15 @@ checkRareUnlock();
         "獲得報酬\n\n" +
         reward
     );
+let opened =
+parseInt(localStorage.getItem("treasureOpened")) || 0;
 
+opened++;
+
+localStorage.setItem(
+"treasureOpened",
+opened
+);
     treasure = 0;
 document.getElementById(
 "treasureBar"
@@ -768,7 +776,10 @@ alert(data[name]);
 }
 function unlockRare(){
 
-if(localStorage.getItem("treasureCount") >= 50){
+let opened =
+parseInt(localStorage.getItem("treasureOpened")) || 0;
+
+if(opened>=50){
 
 document.getElementById(
 "birthdayRabbit"
@@ -777,7 +788,10 @@ document.getElementById(
 
 }
 
-if(localStorage.getItem("treasureCount") >= 100){
+let opened =
+parseInt(localStorage.getItem("treasureOpened")) || 0;
+
+if(opened>=100){
 
 document.getElementById(
 "kingRabbit"
