@@ -391,6 +391,16 @@ animation:birthdayGlow 1.2s infinite;
 </div>
 
 <div
+id="friendMessage"
+style="
+text-align:center;
+margin-top:10px;
+font-size:15px;
+color:#777;
+">
+💬 今日もよろしく〜♪
+</div>
+<div
 id="friendRabbit"
 style="font-size:52px;text-align:center;">
 🐰💓
@@ -645,6 +655,19 @@ localStorage.getItem("friendEmoji");
 
 const savedName =
 localStorage.getItem("friendName");
+const savedMessage =
+localStorage.getItem(
+"friendMessage"
+);
+
+if(savedMessage){
+
+document.getElementById(
+"friendMessage"
+).innerHTML =
+savedMessage;
+
+}
 
 if(savedFriend){
 
@@ -929,13 +952,52 @@ newMark.style.display="none";
 }
 function setFriend(emoji,name){
 
+const messages={
+
+"感情うさぎ":
+"💓 今日も一緒に頑張ろ〜！",
+
+"門番うさぎ":
+"🚪 今日もちゃんと守るね！",
+
+"猫吸いうさぎ":
+"🐈 猫ちゃん補給しよ〜！",
+
+"メロンパンうさぎ":
+"🍈🍞 メロンパン買ってきたよ〜！",
+
+"温泉うさぎ":
+"♨️ 今日ものんびりしよ〜",
+
+"宝箱うさぎ":
+"🎁 宝箱開けるの楽しみ〜！",
+
+"VIPうさぎ":
+"💎 特別室へようこそ♪",
+
+"奇跡うさぎ":
+"🌈 今日はいいことあるかも！",
+
+"王様うさぎ":
+"👑 今日も王国は平和じゃ！",
+
+"お誕生日うさぎ":
+"🎂 お祝いしよ〜！！"
+
+};
+
 document.getElementById(
 "friendRabbit"
-).innerHTML = emoji;
+).innerHTML=emoji;
 
 document.getElementById(
 "friendName"
-).innerHTML = name;
+).innerHTML=name;
+
+document.getElementById(
+"friendMessage"
+).innerHTML=
+messages[name];
 
 localStorage.setItem(
 "friendEmoji",
@@ -945,6 +1007,11 @@ emoji
 localStorage.setItem(
 "friendName",
 name
+);
+
+localStorage.setItem(
+"friendMessage",
+messages[name]
 );
 
 }
