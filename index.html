@@ -446,7 +446,14 @@ onclick="showBookInfo('温泉うさぎ')">
 </div>
 <div class="book-card">
 <div id="birthdayRabbit">
+
+<span id="birthdayNew"
+style="display:none;color:red;font-weight:bold;">
+🆕
+</span>
+
 ？？？
+
 </div>
 </div>
 
@@ -770,22 +777,40 @@ const data = {
 "🛡️🐰感情うさぎを守る警備隊長。簡単には心を開かせない。",
 
 };
+if(name=="お誕生日うさぎ"){
 
+localStorage.setItem(
+"birthdayRead",
+"yes"
+);
+
+const newMark =
+document.getElementById(
+"birthdayNew"
+);
+
+if(newMark){
+
+newMark.style.display="none";
+
+}
+
+}
 alert(data[name]);
 
 }
 function unlockRare(){
 
-let opened =
-parseInt(localStorage.getItem("treasureOpened")) || 0;
+    let opened =
+    parseInt(localStorage.getItem("treasureOpened")) || 0;
 
-if(opened>=100){
+    if(opened >= 100){
 
-document.getElementById(
-"kingRabbit"
-).innerHTML =
-"👑🐰<br>王様うさぎ";
-}
+        document.getElementById("kingRabbit").innerHTML =
+        "👑🐰<br>王様うさぎ";
+
+    }
+
 }
 function checkRareUnlock(){
 
@@ -796,12 +821,37 @@ function checkRareUnlock(){
 
     if(month==6 && day==11){
 
-        document.getElementById("birthdayRabbit").innerHTML =
-        "🐰🎂<br>お誕生日うさぎ";
+    document.getElementById("birthdayRabbit").innerHTML = `
+<span id="birthdayNew"
+style="color:red;font-weight:bold;">
+🆕
+</span>
+<br>
+🐰🎂
+<br>
+お誕生日うさぎ
+`;
         document
 .getElementById("birthdayRabbit")
 .classList.add("birthday");
+if(
+localStorage.getItem(
+"birthdayRead"
+)=="yes"
+){
 
+const newMark =
+document.getElementById(
+"birthdayNew"
+);
+
+if(newMark){
+
+newMark.style.display="none";
+
+}
+
+}
         let birthdayDone =
         localStorage.getItem("birthday2026");
 
