@@ -448,6 +448,19 @@ placeholder="今日のひとこと🐰"
 <div id="diaryList">
 </div>
 <div class="card">
+
+<div class="section-title">
+🗂 思い出アルバム
+</div>
+
+<div id="albumList">
+
+まだありません🐰
+
+</div>
+
+</div>
+<div class="card">
 <div class="section-title">
 📚 図鑑
 </div>
@@ -650,6 +663,7 @@ document.getElementById("hp").innerText
 checkRareUnlock();
 unlockRare();
 renderDiary();
+renderAlbum();
 const savedFriend =
 localStorage.getItem("friendEmoji");
 
@@ -803,16 +817,19 @@ function renderDiary(){
 
     let html = "";
 
-    diaries.forEach(d=>{
+    diaries
+.slice(0,7)
+.forEach(d=>{
 
-        html += `
-        <div class="diary-card">
-        📅 ${d.date}<br>
-        ❤️ HP ${d.hp}<br>
-        💬 ${d.memo}
-        </div>
-        `;
-    });
+    html += `
+    <div class="diary-card">
+    📅 ${d.date}<br>
+    ❤️ HP ${d.hp}<br>
+    💬 ${d.memo}
+    </div>
+    `;
+
+});
 
     document.getElementById(
         "diaryList"
@@ -1014,6 +1031,48 @@ localStorage.setItem(
 messages[name]
 );
 
+}
+function renderAlbum(){
+
+let diaries =
+JSON.parse(
+localStorage.getItem("diaries")
+)||[];
+
+let groups={};
+
+diaries.forEach(d=>{
+
+let month =
+d.date.substring(0,7);
+
+if(!groups[month]){
+
+groups[month]=[];
+
+}
+
+groups[month].push(d);
+
+});
+
+let html="";
+
+for(let month in groups){
+
+html+=`
+<div class="diary-card">
+
+▶ ${month}
+（${groups[month].length}件）
+
+</div>
+`;
+}
+
+document.getElementById(
+"albumList"
+).innerHTML=html;
 }
 </script>
 </body>
