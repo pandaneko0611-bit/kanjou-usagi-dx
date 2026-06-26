@@ -821,14 +821,11 @@ function renderDiary(){
 .slice(0,7)
 .forEach(d=>{
 
-    html+=`
-<div
-class="diary-card"
-onclick="openMonth('${month}')">
-
-▶ ${month}
-（${groups[month].length}件）
-
+html+=`
+<div class="diary-card">
+📅 ${d.date}<br>
+❤️ HP ${d.hp}<br>
+💬 ${d.memo}
 </div>
 `;
 
