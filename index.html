@@ -819,10 +819,13 @@ function renderDiary(){
 
     diaries
 .slice(0,7)
-.forEach(d=>{
+.forEach((d,index)=>{
 
-html+=`
+html += `
 <div class="diary-card">
+<button class="deleteBtn" 
+onclick="deleteDiary(${index})">🗑️
+</button>
 📅 ${d.date}<br>
 ❤️ HP ${d.hp}<br>
 💬 ${d.memo}
