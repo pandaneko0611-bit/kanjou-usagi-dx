@@ -353,6 +353,15 @@ animation:birthdayGlow 1.2s infinite;
     font-size:20px;
     cursor:pointer;
 }
+.albumContent{
+    overflow:hidden;
+    max-height:0;
+    transition:max-height .45s ease;
+}
+
+.albumContent.open{
+    max-height:1000px;
+}
 </style>
 </head>
 <body>
@@ -1087,37 +1096,53 @@ document.getElementById(
 "albumList"
 ).innerHTML=html;
 }
+let openedMonth = "";
+
 function openMonth(month){
 
-let diaries =
-JSON.parse(
-localStorage.getItem("diaries")
-)||[];
+    const area =
+    document.getElementById("albumDetail");
 
-let html="";
+    if(openedMonth===month){
 
-diaries.forEach(d=>{
-    console.log(d);
+        area.classList.remove("open");
 
-if(d.date.startsWith(month)){
+        setTimeout(()=>{
+            area.innerHTML="";
+        },300);
 
-html+=`
+        openedMonth="";
+
+        return;
+    }
+
+    let diaries=
+    JSON.parse(
+        localStorage.getItem("diaries")
+    )||[];
+
+    let html="";
+
+    diaries.forEach(d=>{
+
+        if(d.date.startsWith(month)){
+
+            html+=`
 <div class="diary-card">
-
 📅 ${d.date}<br>
 ❤️ HP ${d.hp}<br>
 💬 ${d.memo}
-
 </div>
 `;
 
-}
+        }
 
-});
+    });
 
-document.getElementById(
-"albumDetail"
-).innerHTML=html;
+    area.innerHTML=
+    `<div class="albumContent open">${html}</div>`;
+
+    openedMonth=month;
 
 }
 renderAlbum();
