@@ -346,6 +346,13 @@ filter:drop-shadow(0 0 0px gold);
 .birthday{
 animation:birthdayGlow 1.2s infinite;
 }
+.deleteBtn{
+    float:right;
+    border:none;
+    background:none;
+    font-size:20px;
+    cursor:pointer;
+}
 </style>
 </head>
 <body>
@@ -1114,13 +1121,6 @@ document.getElementById(
 
 }
 renderAlbum();
-.deleteBtn{
-    float:right;
-    border:none;
-    background:none;
-    font-size:20px;
-    cursor:pointer;
-}
 function deleteDiary(index){
 
     if(!confirm("この日記を削除する？")){
