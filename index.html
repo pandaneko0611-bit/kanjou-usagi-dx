@@ -401,6 +401,66 @@ transform:rotate(0deg);
 }
 
 }
+.modal{
+
+position:fixed;
+
+left:0;
+top:0;
+
+width:100%;
+height:100%;
+
+background:rgba(0,0,0,.45);
+
+display:none;
+
+justify-content:center;
+align-items:center;
+
+z-index:999;
+
+}
+
+.modal.show{
+
+display:flex;
+
+animation:fadeIn .2s;
+
+}
+
+.modalBox{
+
+background:white;
+
+padding:25px;
+
+border-radius:22px;
+
+text-align:center;
+
+width:280px;
+
+box-shadow:0 10px 30px rgba(0,0,0,.2);
+
+}
+@keyframes fadeIn{
+
+from{
+
+opacity:0;
+
+}
+
+to{
+
+opacity:1;
+
+}
+
+}
+    
 </style>
 </head>
 <body>
@@ -879,7 +939,7 @@ function renderDiary(){
 html += `
 <div class="diary-card">
 <button class="deleteBtn" 
-onclick="deleteDiary(${index})">🐰🧹
+onclick="askDelete(${index})">🐰🧹
 </button>
 📅 ${d.date}<br>
 ❤️ HP ${d.hp}<br>
@@ -1187,10 +1247,6 @@ function openMonth(month){
 renderAlbum();
 function deleteDiary(index){
 
-    if(!confirm("この日記を削除する？")){
-        return;
-    }
-
     let diaries =
     JSON.parse(localStorage.getItem("diaries")) || [];
 
@@ -1205,6 +1261,74 @@ function deleteDiary(index){
     renderAlbum();
 
 }
+
+let deleteIndex=-1;
+
+function askDelete(index){
+
+deleteIndex=index;
+
+document
+.getElementById("deleteModal")
+.classList.add("show");
+
+}
+
+function closeDeleteModal(){
+
+document
+.getElementById("deleteModal")
+.classList.remove("show");
+
+}
+document
+.getElementById("deleteYes")
+.onclick=function(){
+
+let diaries=
+JSON.parse(
+localStorage.getItem("diaries")
+)||[];
+
+diaries.splice(deleteIndex,1);
+
+localStorage.setItem(
+"diaries",
+JSON.stringify(diaries)
+);
+
+renderDiary();
+
+renderAlbum();
+
+closeDeleteModal();
+
+}
 </script>
+<div id="deleteModal" class="modal">
+
+<div class="modalBox">
+
+<div style="font-size:70px;">
+🐰🧹
+</div>
+
+<h3>本当にお片付けする？</h3>
+
+<p>
+思い出は消えちゃうよ🥺
+</p>
+
+<button onclick="closeDeleteModal()">
+やっぱりやめる
+</button>
+
+<button id="deleteYes">
+お片付けする✨
+</button>
+
+</div>
+
+</div>
 </body>
 </html>
