@@ -347,16 +347,23 @@ filter:drop-shadow(0 0 0px gold);
 animation:birthdayGlow 1.2s infinite;
 }
 .deleteBtn{
+
     float:right;
     border:none;
     background:none;
     font-size:22px;
     cursor:pointer;
-    transition:.2s;
+
+    transition:
+    transform .15s;
 }
     .deleteBtn:active{
-    animation:shake .35s;
-    transform:scale(.8);
+
+    transform:
+    translateY(-4px)
+    scale(.78)
+    rotate(-18deg);
+
 }
 .albumContent{
     overflow:hidden;
@@ -872,7 +879,7 @@ function renderDiary(){
 html += `
 <div class="diary-card">
 <button class="deleteBtn" 
-onclick="deleteDiary(${index})">🗑️
+onclick="deleteDiary(${index})">🐰🧹
 </button>
 📅 ${d.date}<br>
 ❤️ HP ${d.hp}<br>
