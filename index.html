@@ -454,9 +454,9 @@ placeholder="今日のひとこと🐰"
 </div>
 
 <div id="albumList">
-
 まだありません🐰
-
+</div>
+<div id="albumDetail">
 </div>
 
 </div>
@@ -821,13 +821,16 @@ function renderDiary(){
 .slice(0,7)
 .forEach(d=>{
 
-    html += `
-    <div class="diary-card">
-    📅 ${d.date}<br>
-    ❤️ HP ${d.hp}<br>
-    💬 ${d.memo}
-    </div>
-    `;
+    html+=`
+<div
+class="diary-card"
+onclick="openMonth('${month}')">
+
+▶ ${month}
+（${groups[month].length}件）
+
+</div>
+`;
 
 });
 
@@ -1073,6 +1076,38 @@ html+=`
 document.getElementById(
 "albumList"
 ).innerHTML=html;
+}
+function openMonth(month){
+
+let diaries =
+JSON.parse(
+localStorage.getItem("diaries")
+)||[];
+
+let html="";
+
+diaries.forEach(d=>{
+
+if(d.date.startsWith(month)){
+
+html+=`
+<div class="diary-card">
+
+📅 ${d.date}<br>
+❤️ HP ${d.hp}<br>
+💬 ${d.memo}
+
+</div>
+`;
+
+}
+
+});
+
+document.getElementById(
+"albumDetail"
+).innerHTML=html;
+
 }
 </script>
 </body>
