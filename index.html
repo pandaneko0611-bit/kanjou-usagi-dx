@@ -1114,6 +1114,33 @@ document.getElementById(
 
 }
 renderAlbum();
+.deleteBtn{
+    float:right;
+    border:none;
+    background:none;
+    font-size:20px;
+    cursor:pointer;
+}
+function deleteDiary(index){
+
+    if(!confirm("この日記を削除する？")){
+        return;
+    }
+
+    let diaries =
+    JSON.parse(localStorage.getItem("diaries")) || [];
+
+    diaries.splice(index,1);
+
+    localStorage.setItem(
+        "diaries",
+        JSON.stringify(diaries)
+    );
+
+    renderDiary();
+    renderAlbum();
+
+}
 </script>
 </body>
 </html>
