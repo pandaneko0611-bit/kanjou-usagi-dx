@@ -1045,6 +1045,7 @@ localStorage.getItem("diaries")
 let groups={};
 
 diaries.forEach(d=>{
+    console.log(d);
 
 let month =
 d.date.substring(0,7);
@@ -1089,6 +1090,7 @@ localStorage.getItem("diaries")
 let html="";
 
 diaries.forEach(d=>{
+    console.log(d);
 
 if(d.date.startsWith(month)){
 
