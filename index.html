@@ -350,8 +350,13 @@ animation:birthdayGlow 1.2s infinite;
     float:right;
     border:none;
     background:none;
-    font-size:20px;
+    font-size:22px;
     cursor:pointer;
+    transition:.2s;
+}
+    .deleteBtn:active{
+    animation:shake .35s;
+    transform:scale(.8);
 }
 .albumContent{
     overflow:hidden;
