@@ -761,6 +761,43 @@ const BOOK_DATA = {
 "🛡️🐰感情うさぎを守る警備隊長。簡単には心を開かせない。",
 
 };
+//==============================
+// 🐰 おともだちセリフ
+//==============================
+
+const FRIEND_MESSAGES = {
+
+"感情うさぎ":
+"💓 今日も一緒に頑張ろ〜！",
+
+"門番うさぎ":
+"🚪 今日もちゃんと守るね！",
+
+"猫吸いうさぎ":
+"🐈 猫ちゃん補給しよ〜！",
+
+"メロンパンうさぎ":
+"🍈🍞 メロンパン買ってきたよ〜！",
+
+"温泉うさぎ":
+"♨️ 今日ものんびりしよ〜",
+
+"宝箱うさぎ":
+"🎁 宝箱開けるの楽しみ〜！",
+
+"VIPうさぎ":
+"💎 特別室へようこそ♪",
+
+"奇跡うさぎ":
+"🌈 今日はいいことあるかも！",
+
+"王様うさぎ":
+"👑 今日も王国は平和じゃ！",
+
+"お誕生日うさぎ":
+"🎂 お祝いしよ〜！！"
+
+};
 //========================================
 // 🐰 初期化
 // ローカルストレージからデータを読み込む
@@ -1073,7 +1110,7 @@ newMark.style.display="none";
 }
 
 }
-alert(data[name]);
+alert(BOOK_DATA[name]);
 
 }
 function unlockRare(){
@@ -1162,40 +1199,6 @@ newMark.style.display="none";
 //========================================
 function setFriend(emoji,name){
 
-const messages={
-
-"感情うさぎ":
-"💓 今日も一緒に頑張ろ〜！",
-
-"門番うさぎ":
-"🚪 今日もちゃんと守るね！",
-
-"猫吸いうさぎ":
-"🐈 猫ちゃん補給しよ〜！",
-
-"メロンパンうさぎ":
-"🍈🍞 メロンパン買ってきたよ〜！",
-
-"温泉うさぎ":
-"♨️ 今日ものんびりしよ〜",
-
-"宝箱うさぎ":
-"🎁 宝箱開けるの楽しみ〜！",
-
-"VIPうさぎ":
-"💎 特別室へようこそ♪",
-
-"奇跡うさぎ":
-"🌈 今日はいいことあるかも！",
-
-"王様うさぎ":
-"👑 今日も王国は平和じゃ！",
-
-"お誕生日うさぎ":
-"🎂 お祝いしよ〜！！"
-
-};
-
 document.getElementById(
 "friendRabbit"
 ).innerHTML=emoji;
@@ -1207,7 +1210,7 @@ document.getElementById(
 document.getElementById(
 "friendMessage"
 ).innerHTML=
-messages[name];
+FRIEND_MESSAGES[name];
 
 localStorage.setItem(
 "friendEmoji",
@@ -1221,7 +1224,7 @@ name
 
 localStorage.setItem(
 "friendMessage",
-messages[name]
+FRIEND_MESSAGES[name]
 );
 
 }
