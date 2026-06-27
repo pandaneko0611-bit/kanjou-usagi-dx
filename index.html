@@ -710,6 +710,10 @@ const CONFIG = {
     MAX_RECENT_DIARY:7
 
 };
+//========================================
+// 🐰 初期化
+// ローカルストレージからデータを読み込む
+//========================================
 let treasure =
 parseInt(
 localStorage.getItem("treasure")
@@ -744,6 +748,10 @@ else if(hp >= CONFIG.HP_TIRED){
 else{
     rabbit.innerHTML = "🐰🫠";
 }
+//========================================
+// ❤️ HPシステム
+// HP変更・表情変更
+//========================================
 function changeHP(amount){
 let hpElement =
 document.getElementById("hp");
@@ -857,6 +865,10 @@ document.getElementById(
 savedName;
 
 }
+//========================================
+// 🎁 宝箱システム
+// 宝箱・報酬
+//========================================
 function openTreasure(){
 let treasureOpened =
 parseInt(localStorage.getItem("treasureOpened")) || 0;
@@ -926,6 +938,10 @@ document.getElementById(
 document.getElementById(
 "treasure"
 ).innerText = treasure;
+//========================================
+// 📔 日記システム
+// 保存・表示・削除
+//========================================
 function saveDiary(){
 
     const hp =
@@ -1000,6 +1016,10 @@ onclick="askDelete(${index})">🐰🧹
         "diaryList"
     ).innerHTML = html;
 }
+//========================================
+// 📚 図鑑システム
+// 説明・解放
+//========================================
 function showBookInfo(name){
 
 const data = {
@@ -1132,6 +1152,9 @@ newMark.style.display="none";
 
     }
 }
+//========================================
+// 🐰 今日のおともだち
+//========================================
 function setFriend(emoji,name){
 
 const messages={
@@ -1197,6 +1220,10 @@ messages[name]
 );
 
 }
+//========================================
+// 🗂 思い出アルバム
+// 月ごとの表示
+//========================================
 function renderAlbum(){
 
 let diaries =
@@ -1311,6 +1338,9 @@ function deleteDiary(index){
 
 let deleteIndex=-1;
 
+//========================================
+// 🧹 お片付けモーダル
+//========================================
 function askDelete(index){
 
 deleteIndex=index;
