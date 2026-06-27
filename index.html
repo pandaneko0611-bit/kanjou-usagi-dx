@@ -688,6 +688,28 @@ showBookInfo('門番うさぎ');setFriend('🐰🚪','門番うさぎ')">
 
 </div>
 <script>
+//==============================
+// 🐰 感情うさぎDX Ver3.3
+// 設定
+//==============================
+
+const CONFIG = {
+
+    MAX_HP:100,
+
+    TREASURE_MAX:50,
+
+    KING_UNLOCK:100,
+
+    HP_HAPPY:80,
+
+    HP_NORMAL:50,
+
+    HP_TIRED:30,
+
+    MAX_RECENT_DIARY:7
+
+};
 let treasure =
 parseInt(
 localStorage.getItem("treasure")
@@ -710,13 +732,13 @@ const hp =
 parseInt(hpText);
 const rabbit =
 document.getElementById("rabbit");
-if(hp >= 80){
+if(hp >= CONFIG.HP_HAPPY){
     rabbit.innerHTML = "🐰💖";
 }
-else if(hp >= 50){
+else if(hp >= CONFIG.HP_NORMAL){
     rabbit.innerHTML = "🐰🎀";
 }
-else if(hp >= 30){
+else if(hp >= CONFIG.HP_TIRED){
     rabbit.innerHTML = "🐰🥺";
 }
 else{
@@ -728,7 +750,7 @@ document.getElementById("hp");
 let hp =
 parseInt(hpElement.innerText);
 hp += amount;
-if(amount > 0 && hp >= 80){
+if(amount > 0 && hp >= CONFIG.HP_HAPPY){
 
     treasure++;
 
@@ -738,18 +760,18 @@ if(amount > 0 && hp >= 80){
     document.getElementById(
 "treasureBar"
 ).style.width =
-(treasure / 50 * 100) + "%";
+(treasure / CONFIG.TREASURE_MAX * 100) + "%";
     localStorage.setItem(
     "treasure",
     treasure
     );
 
-    if(treasure >= 50){
+    if(treasure >= CONFIG.TREASURE_MAX){
         openTreasure();
     }
 }
-if(hp > 100){
-    hp = 100;
+if(hp > CONFIG.MAX_HP){
+    hp = CONFIG.MAX_HP;
 }
 
 if(hp < 0){
@@ -773,17 +795,17 @@ const bar =
 document.getElementById("bar");
 bar.style.width =
 hp + "%";
-    if(hp >= 80){
+    if(hp >= CONFIG.HP_HAPPY){
         rabbit.innerHTML = "🐰💖";
         message.innerHTML =
         "💖 今日はふわふわ絶好調〜";
     }
-    else if(hp >= 50){
+    else if(hp >= CONFIG.HP_NORMAL){
         rabbit.innerHTML = "🐰🎀";
         message.innerHTML =
         "🎀 今日も頑張った〜";
     }
-    else if(hp >= 30){
+    else if(hp >= CONFIG.HP_TIRED){
         rabbit.innerHTML = "🐰🥺";
         message.innerHTML =
         "🥺 なでなで募集中〜";
@@ -958,8 +980,8 @@ function renderDiary(){
     let html = "";
 
     diaries
-.slice(0,7)
-.forEach((d,index)=>{
+.slice(0, CONFIG.MAX_RECENT_DIARY)
+.forEach((d, index) => {
 
 html += `
 <div class="diary-card">
@@ -1034,7 +1056,7 @@ function unlockRare(){
     let opened =
     parseInt(localStorage.getItem("treasureOpened")) || 0;
 
-    if(opened >= 100){
+    if(opened >= CONFIG.KING_UNLOCK){
 
         document.getElementById("kingRabbit").innerHTML =
         "👑🐰<br>王様うさぎ";
@@ -1103,7 +1125,7 @@ newMark.style.display="none";
     let opened =
     parseInt(localStorage.getItem("treasureOpened")) || 0;
 
-    if(opened>=100){
+    if(opened >= CONFIG.KING_UNLOCK){
 
         document.getElementById("kingRabbit").innerHTML =
         "👑<br>王様うさぎ";
