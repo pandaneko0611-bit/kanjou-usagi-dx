@@ -1127,8 +1127,6 @@ document.getElementById("birthdayNew");
 newMark.style.display="none";
 
 }
-
-}
 alert(
 
 BOOK_DATA[name].emoji +
@@ -1137,11 +1135,10 @@ BOOK_DATA[name].emoji +
 
 name +
 
-"\n\n⭐".repeat(
-
-BOOK_DATA[name].rare
-
-)
+"\\n\\n" +
+"⭐".repeat(BOOK_DATA[name].rare) +
+"\\n\\n" +
+BOOK_DATA[name].text
 
 +
 
