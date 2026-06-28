@@ -585,6 +585,33 @@ box-shadow:
 0 0 18px rgba(255,210,70,.45);
 
 }
+
+.clearRibbon{
+
+display:inline-block;
+
+background:linear-gradient(
+135deg,
+#ffd84d,
+#ffbf00
+);
+
+color:white;
+
+font-size:12px;
+
+font-weight:bold;
+
+padding:4px 10px;
+
+border-radius:999px;
+
+margin-bottom:10px;
+
+box-shadow:
+0 2px 8px rgba(255,200,0,.35);
+
+}
 </style>
 </head>
 <body>
@@ -1436,6 +1463,9 @@ if(list.includes(id)){
 
 html+=`
 <div class="achievementItem achievementClear">
+<div class="clearRibbon">
+👑 CLEAR
+</div>
 <div class="achievementTitle">
 ${ACHIEVEMENT_DATA[id].emoji}
 ${ACHIEVEMENT_DATA[id].title}
