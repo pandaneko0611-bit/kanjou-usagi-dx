@@ -824,6 +824,28 @@ const BOOK_DATA = {
 }
 
 };
+//=========================
+// 🏆 実績データ
+//=========================
+
+const ACHIEVEMENTS = {
+
+firstDiary:{
+title:"📝 初めての日記",
+text:"初めて日記を書いた！"
+},
+
+tenTreasure:{
+title:"🎁 宝箱好き",
+text:"宝箱を10個開けた！"
+},
+
+bookMaster:{
+title:"📚 図鑑マスター",
+text:"図鑑をコンプリートした！"
+},
+
+};
 //==============================
 // 🐰 おともだちセリフ
 //==============================
@@ -982,6 +1004,7 @@ document.getElementById("hp").innerText
 );
 checkRareUnlock();
 unlockRare();
+checkBookMaster();
 renderDiary();
 renderAlbum();
 const savedFriend =
@@ -1025,6 +1048,11 @@ let treasureOpened =
 parseInt(localStorage.getItem("treasureOpened")) || 0;
 
 treasureOpened++;
+if(treasureOpened>=10){
+
+unlockAchievement("tenTreasure");
+
+}
 
 localStorage.setItem(
 "treasureOpened",
@@ -1112,6 +1140,7 @@ function saveDiary(){
 
     renderDiary();
     renderAlbum();
+    unlockAchievement("firstDiary");
 
     document.getElementById(
         "memo"
@@ -1216,6 +1245,42 @@ function unlockRare(){
     }
 
 }
+//=========================
+// 🏆 実績解除
+//=========================
+
+function unlockAchievement(id){
+
+let list =
+JSON.parse(localStorage.getItem("achievement")) || [];
+
+if(list.includes(id)) return;
+
+list.push(id);
+
+localStorage.setItem(
+"achievement",
+JSON.stringify(list)
+);
+
+alert(
+ACHIEVEMENT_DATA[id].emoji +
+"\n\n🏆 " +
+ACHIEVEMENT_DATA[id].title +
+"\n\n" +
+ACHIEVEMENT_DATA[id].text
+);
+
+}
+const ACHIEVEMENT_DATA = {
+
+bookMaster:{
+    emoji:"📚✨",
+    title:"図鑑マスター",
+    text:"すべてのおともだちを見つけた！"
+}
+
+};
 function checkRareUnlock(){
 
     const today = new Date();
@@ -1283,6 +1348,21 @@ newMark.style.display="none";
         "👑<br>王様うさぎ";
 
     }
+}
+function checkBookMaster(){
+
+const unlocked = Object.keys(BOOK_DATA).every(name=>{
+
+return localStorage.getItem(name)=="yes";
+
+});
+
+if(unlocked){
+
+unlockAchievement("bookMaster");
+
+}
+
 }
 //========================================
 // 🐰 今日のおともだち
