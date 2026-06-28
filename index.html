@@ -1320,7 +1320,35 @@ bookMaster:{
     title:"図鑑マスター",
     text:"すべてのおともだちを見つけた！"
 }
+bookMaster:{
+emoji:"📚✨",
+title:"図鑑マスター",
+text:"すべてのおともだちを見つけた！"
+},
 
+treasure50:{
+emoji:"🎁",
+title:"宝箱マスター",
+text:"宝箱を50回開けた！"
+},
+
+miracle:{
+emoji:"🌈",
+title:"奇跡発見",
+text:"奇跡うさぎに出会った！"
+},
+
+birthday:{
+emoji:"🎂",
+title:"Happy Birthday",
+text:"お誕生日うさぎを見つけた！"
+},
+
+king:{
+    emoji:"👑🐰",
+    title:"王様うさぎ",
+    text:"王様うさぎを解放した！"
+},
 };
 function showAchievements(){
 
@@ -1433,7 +1461,7 @@ newMark.style.display="none";
             );
 
         }
-
+unlockAchievement("birthday");
     }
 
     let opened =
@@ -1442,7 +1470,8 @@ newMark.style.display="none";
     if(opened >= CONFIG.KING_UNLOCK){
 
         document.getElementById("kingRabbit").innerHTML =
-        "👑<br>王様うさぎ";
+        "👑🐰<br>王様うさぎ";
+        unlockAchievement("king");
 
     }
 }
