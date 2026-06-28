@@ -1028,6 +1028,37 @@ else if(hp >= CONFIG.HP_TIRED){
 else{
     rabbit.innerHTML = "🐰🫠";
 }
+let loginStreak =
+parseInt(localStorage.getItem("loginStreak")) || 0;
+
+let lastLogin =
+localStorage.getItem("lastLogin");
+
+const today =
+new Date().toLocaleDateString();
+
+if(lastLogin != today){
+
+    loginStreak++;
+
+    localStorage.setItem(
+        "loginStreak",
+        loginStreak
+    );
+
+    localStorage.setItem(
+        "lastLogin",
+        today
+    );
+
+}
+if(loginStreak>=7){
+    unlockAchievement("login7");
+}
+
+if(loginStreak>=30){
+    unlockAchievement("login30");
+}
 //========================================
 // ❤️ HPシステム
 // HP変更・表情変更
@@ -1429,7 +1460,20 @@ perfectHP:{
     title:"絶好調！",
     text:"HP100%になった！"
 },
+
+login7:{
+    emoji:"📅",
+    title:"おともだち",
+    text:"7日連続で会いに来た！"
+},
+
+login30:{
+    emoji:"🩷",
+    title:"ずっと一緒",
+    text:"30日連続で会いに来た！"
+},
 };
+
 
 function showAchievementPopup(id){
 
