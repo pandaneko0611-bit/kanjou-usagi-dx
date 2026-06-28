@@ -500,6 +500,32 @@ transform:translateY(0) scale(1);
 }
 
 }
+#achievementList{
+display:flex;
+flex-direction:column;
+gap:12px;
+margin-top:18px;
+}
+
+.achievementItem{
+background:#fff7fb;
+border-radius:16px;
+padding:14px;
+box-shadow:0 4px 12px rgba(255,170,210,.25);
+text-align:left;
+}
+
+.achievementTitle{
+font-size:18px;
+font-weight:bold;
+color:#ff7eb6;
+margin-bottom:6px;
+}
+
+.achievementText{
+font-size:14px;
+color:#777;
+}
 </style>
 </head>
 <body>
@@ -1296,6 +1322,62 @@ bookMaster:{
 }
 
 };
+function showAchievements(){
+
+const list =
+JSON.parse(localStorage.getItem("achievement")) || [];
+
+let html="";
+
+for(let id in ACHIEVEMENT_DATA){
+
+if(list.includes(id)){
+
+html+=`
+<div class="achievementItem">
+<div class="achievementTitle">
+${ACHIEVEMENT_DATA[id].emoji}
+${ACHIEVEMENT_DATA[id].title}
+</div>
+
+<div class="achievementText">
+${ACHIEVEMENT_DATA[id].text}
+</div>
+</div>
+`;
+
+}else{
+
+html+=`
+<div class="achievementItem">
+<div class="achievementTitle">
+🔒？？？
+</div>
+
+<div class="achievementText">
+まだ見つかっていません
+</div>
+</div>
+`;
+
+}
+
+}
+
+document.getElementById("achievementList").innerHTML=html;
+
+document
+.getElementById("achievementModal")
+.classList.add("show");
+
+}
+function closeAchievement(){
+
+document
+.getElementById("achievementModal")
+.classList.remove("show");
+
+}
 function checkRareUnlock(){
 
     const today = new Date();
@@ -1600,6 +1682,22 @@ closeDeleteModal();
         </button>
 
     </div>
+
+</div>
+<!-- 実績モーダル -->
+<div id="achievementModal" class="modal">
+
+  <div class="modalBox" id="achievementCard">
+
+    <h2>🏆 実績</h2>
+
+    <div id="achievementList"></div>
+
+    <button onclick="closeAchievementModal()">
+      とじる🐰
+    </button>
+
+  </div>
 
 </div>
 </body>
