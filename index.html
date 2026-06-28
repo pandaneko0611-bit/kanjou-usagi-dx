@@ -460,7 +460,18 @@ opacity:1;
 }
 
 }
-    
+#bookEmoji{
+    animation:pop .35s;
+}
+
+#bookTitle{
+    color:#ff7eb6;
+    margin:10px 0;
+}
+
+#bookText{
+    white-space:pre-wrap;
+}
 </style>
 </head>
 <body>
@@ -1127,20 +1138,28 @@ document.getElementById("birthdayNew");
 newMark.style.display="none";
 
 }
-alert(
+document.getElementById("bookEmoji").innerHTML =
+BOOK_DATA[name].emoji;
 
-BOOK_DATA[name].emoji +
+document.getElementById("bookTitle").innerText =
+name;
 
-"\n\n" +
+document.getElementById("bookStars").innerText =
+"⭐".repeat(BOOK_DATA[name].rare);
 
-name +
+document.getElementById("bookText").innerText =
+BOOK_DATA[name].text;
 
-"\n\n" +
-"⭐".repeat(BOOK_DATA[name].rare) +
-"\n\n" +
-BOOK_DATA[name].text
+document
+.getElementById("bookModal")
+.classList.add("show");
 
-);
+}
+function closeBookModal(){
+
+document
+.getElementById("bookModal")
+.classList.remove("show");
 
 }
 function unlockRare(){
