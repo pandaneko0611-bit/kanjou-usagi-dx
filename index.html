@@ -865,28 +865,6 @@ const BOOK_DATA = {
 }
 
 };
-//=========================
-// 🏆 実績データ
-//=========================
-
-const ACHIEVEMENTS = {
-
-firstDiary:{
-title:"📝 初めての日記",
-text:"初めて日記を書いた！"
-},
-
-tenTreasure:{
-title:"🎁 宝箱好き",
-text:"宝箱を10個開けた！"
-},
-
-bookMaster:{
-title:"📚 図鑑マスター",
-text:"図鑑をコンプリートした！"
-},
-
-};
 //==============================
 // 🐰 おともだちセリフ
 //==============================
@@ -1093,9 +1071,10 @@ parseInt(localStorage.getItem("treasureOpened")) || 0;
 
 treasureOpened++;
 if(treasureOpened>=10){
-
 unlockAchievement("tenTreasure");
-
+}
+if(treasureOpened >= 50){
+    unlockAchievement("treasure50");
 }
 
 localStorage.setItem(
@@ -1324,7 +1303,13 @@ title:"図鑑マスター",
 text:"すべてのおともだちを見つけた！"
 },
 
-treasure50:{
+tenTreasure:{
+    emoji:"🎁",
+    title:"宝箱好き",
+    text:"宝箱を10回開けた！"
+},
+    
+ treasure50:{
 emoji:"🎁",
 title:"宝箱マスター",
 text:"宝箱を50回開けた！"
