@@ -1165,8 +1165,17 @@ document.getElementById("birthdayNew");
 newMark.style.display="none";
 
 }
-document.getElementById("bookEmoji").innerHTML =
+const emoji =
+document.getElementById("bookEmoji");
+
+emoji.innerHTML =
 BOOK_DATA[name].emoji;
+
+emoji.style.animation = "none";
+
+emoji.offsetHeight;
+
+emoji.style.animation = "pop .35s";
 
 document.getElementById("bookTitle").innerText =
 name;
