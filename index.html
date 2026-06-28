@@ -972,6 +972,9 @@ document.getElementById("hp");
 let hp =
 parseInt(hpElement.innerText);
 hp += amount;
+if(amount > 0){
+    unlockAchievement("firstHeal");
+}
 if(amount > 0 && hp >= CONFIG.HP_HAPPY){
 
     treasure++;
@@ -1348,6 +1351,12 @@ king:{
     emoji:"👑🐰",
     title:"王様うさぎ",
     text:"王様うさぎを解放した！"
+},
+
+firstHeal:{
+    emoji:"❤️",
+    title:"はじめの一歩",
+    text:"初めてHPを回復した！"
 },
 };
 function showAchievements(){
