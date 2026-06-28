@@ -614,6 +614,28 @@ box-shadow:
 0 2px 8px rgba(255,200,0,.35);
 
 }
+
+.loginStreak{
+
+margin-top:12px;
+
+font-size:18px;
+
+font-weight:bold;
+
+color:#ff7fb2;
+
+background:#fff6fb;
+
+border-radius:999px;
+
+padding:8px 16px;
+
+display:inline-block;
+
+box-shadow:0 3px 10px rgba(255,170,210,.25);
+
+}
 </style>
 </head>
 <body>
@@ -630,6 +652,9 @@ box-shadow:
 </div>
 <div class="hp" id="hp">
 78%
+</div>
+<div id="loginStreakText" class="loginStreak">
+🔥 1日連続
 </div>
 <div class="bar-bg">
 <div class="bar" id="bar"></div>
@@ -1071,6 +1096,9 @@ localStorage.setItem(
     todayDate.toDateString()
 );
 
+document.getElementById("loginStreakText").innerHTML =
+"🔥 " + loginStreak + "日連続";
+
 if(loginStreak>=7){
     unlockAchievement("login7");
 }
@@ -1078,6 +1106,9 @@ if(loginStreak>=7){
 if(loginStreak>=30){
     unlockAchievement("login30");
 }
+
+document.getElementById("loginStreakText").innerHTML =
+"🔥 " + loginStreak + "日連続";
 //========================================
 // ❤️ HPシステム
 // HP変更・表情変更
