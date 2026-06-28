@@ -1034,24 +1034,43 @@ parseInt(localStorage.getItem("loginStreak")) || 0;
 let lastLogin =
 localStorage.getItem("lastLogin");
 
-const today =
-new Date().toLocaleDateString();
+const todayDate = new Date();
 
-if(lastLogin != today){
+if(lastLogin){
 
-    loginStreak++;
+    const lastDate = new Date(lastLogin);
 
-    localStorage.setItem(
-        "loginStreak",
-        loginStreak
+    const diff =
+    Math.floor(
+        (todayDate-lastDate)/(1000*60*60*24)
     );
 
-    localStorage.setItem(
-        "lastLogin",
-        today
-    );
+    if(diff==1){
+
+        loginStreak++;
+
+    }else if(diff>1){
+
+        loginStreak=1;
+
+    }
+
+}else{
+
+    loginStreak=1;
 
 }
+
+localStorage.setItem(
+    "loginStreak",
+    loginStreak
+);
+
+localStorage.setItem(
+    "lastLogin",
+    todayDate.toDateString()
+);
+
 if(loginStreak>=7){
     unlockAchievement("login7");
 }
