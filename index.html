@@ -497,6 +497,24 @@ transform:scale(1);
 }
 
 }
+@keyframes cardPop{
+
+0%{
+opacity:0;
+transform:translateY(15px) scale(.95);
+}
+
+60%{
+opacity:1;
+transform:translateY(-3px) scale(1.02);
+}
+
+100%{
+opacity:1;
+transform:translateY(0) scale(1);
+}
+
+}
 </style>
 </head>
 <body>
@@ -1188,6 +1206,16 @@ document
 .getElementById("bookModal")
 .classList.add("show");
 
+const card =
+document.getElementById("bookCard");
+
+card.style.animation="none";
+
+card.offsetHeight;
+
+card.style.animation=
+"cardPop .35s ease";
+
 }
 function closeBookModal(){
 
@@ -1476,7 +1504,7 @@ closeDeleteModal();
 <!-- 図鑑カード -->
 <div id="bookModal" class="modal">
 
-    <div class="modalBox">
+    <div id="bookCard" class="modalBox">
 
         <div id="bookEmoji" style="font-size:70px;">
             🐰
