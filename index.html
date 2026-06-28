@@ -1107,8 +1107,33 @@ if(loginStreak>=30){
     unlockAchievement("login30");
 }
 
+let icon = "🔥";
+let title = "会いにきた！";
+
+if(loginStreak >= 100){
+    icon = "💎";
+    title = "運命共同体";
+}
+else if(loginStreak >= 30){
+    icon = "👑";
+    title = "相棒！";
+}
+else if(loginStreak >= 7){
+    icon = "🌈";
+    title = "大親友！";
+}
+else if(loginStreak >= 4){
+    icon = "⭐";
+    title = "仲良し！";
+}
+
 document.getElementById("loginStreakText").innerHTML =
-"🔥 " + loginStreak + "日連続";
+`
+<div>${icon} ${title}</div>
+<div style="font-size:13px;margin-top:2px;">
+${loginStreak}日連続
+</div>
+`;
 //========================================
 // ❤️ HPシステム
 // HP変更・表情変更
