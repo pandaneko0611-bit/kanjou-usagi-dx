@@ -526,6 +526,50 @@ margin-bottom:6px;
 font-size:14px;
 color:#777;
 }
+
+.achievementPopup{
+position:fixed;
+top:-200px;
+left:50%;
+transform:translateX(-50%);
+transition:.5s;
+z-index:9999;
+}
+
+.achievementPopup.show{
+top:30px;
+}
+
+.achievementPopupBox{
+background:white;
+padding:18px 24px;
+border-radius:20px;
+box-shadow:0 10px 30px rgba(0,0,0,.2);
+text-align:center;
+min-width:260px;
+}
+
+.achievementPopupEmoji{
+font-size:40px;
+}
+
+.achievementPopupTitle{
+font-size:22px;
+font-weight:bold;
+color:#ff7fb2;
+margin-top:6px;
+}
+
+.achievementPopupName{
+font-size:18px;
+font-weight:bold;
+margin-top:10px;
+}
+
+.achievementPopupText{
+margin-top:6px;
+color:#666;
+}
 </style>
 </head>
 <body>
@@ -950,6 +994,9 @@ document.getElementById("hp");
 let hp =
 parseInt(hpElement.innerText);
 hp += amount;
+if(hp >= 100){
+    unlockAchievement("perfectHP");
+}
 if(amount > 0){
     unlockAchievement("firstHeal");
 }
@@ -1286,13 +1333,7 @@ localStorage.setItem(
 JSON.stringify(list)
 );
 
-alert(
-ACHIEVEMENT_DATA[id].emoji +
-"\n\n🏆 " +
-ACHIEVEMENT_DATA[id].title +
-"\n\n" +
-ACHIEVEMENT_DATA[id].text
-);
+showAchievementPopup(id);
 
 }
 const ACHIEVEMENT_DATA = {
@@ -1338,7 +1379,35 @@ firstHeal:{
     title:"はじめの一歩",
     text:"初めてHPを回復した！"
 },
+
+perfectHP:{
+    emoji:"💖",
+    title:"絶好調！",
+    text:"HP100%になった！"
+},
 };
+
+function showAchievementPopup(id){
+
+document.getElementById("achievementPopupEmoji").innerHTML=
+ACHIEVEMENT_DATA[id].emoji;
+
+document.getElementById("achievementPopupName").innerHTML=
+ACHIEVEMENT_DATA[id].title;
+
+document.getElementById("achievementPopupText").innerHTML=
+ACHIEVEMENT_DATA[id].text;
+
+const popup=document.getElementById("achievementPopup");
+
+popup.classList.add("show");
+
+setTimeout(()=>{
+popup.classList.remove("show");
+},3000);
+
+}
+
 function showAchievements(){
 
 const list =
@@ -1717,6 +1786,14 @@ closeDeleteModal();
 
   </div>
 
+</div>
+<div id="achievementPopup" class="achievementPopup">
+  <div class="achievementPopupBox">
+    <div id="achievementPopupEmoji" class="achievementPopupEmoji">🏆</div>
+    <div class="achievementPopupTitle">🏆 実績解除！</div>
+    <div id="achievementPopupName" class="achievementPopupName"></div>
+    <div id="achievementPopupText" class="achievementPopupText"></div>
+  </div>
 </div>
 </body>
 </html>
