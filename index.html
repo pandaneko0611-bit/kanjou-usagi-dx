@@ -1382,13 +1382,45 @@ function renderDiary(){
 .forEach((d, index) => {
 
 html += `
-<div class="diary-card">
-<button class="deleteBtn" 
-onclick="askDelete(${index})">🐰🧹
+<div class="memoryBook">
+
+<button
+class="deleteBtn"
+onclick="askDelete(${index})">
+🐰🧹
 </button>
-📅 ${d.date}<br>
-❤️ HP ${d.hp}<br>
-💬 ${d.memo}
+
+<div class="memoryRabbit">
+🐰💕
+</div>
+
+<div class="memoryText">
+
+感情うさぎが<br>
+大切にしまっていた思い出です
+
+</div>
+
+<button
+class="openBookBtn"
+onclick='openDiary(`
+<h2>📖 思い出</h2>
+
+<p>📅 ${d.date}</p>
+
+<p>❤️ HP ${d.hp}%</p>
+
+<hr>
+
+<p style="white-space:pre-wrap;line-height:1.8;">
+${d.memo}
+</p>
+`)'
+
+📖 開く
+
+</button>
+
 </div>
 `;
 
@@ -1630,7 +1662,24 @@ document
 .classList.remove("show");
 
 }
-function checkRareUnlock(){
+
+functionfunction openDiary(html){
+
+    document.getElementById("diaryContent").innerHTML = html;
+
+    document
+        .getElementById("diaryModal")
+        .classList.add("show");
+
+}
+
+function closeDiary(){
+
+    document
+        .getElementById("diaryModal")
+        .classList.remove("show");
+
+} checkRareUnlock(){
 
     const today = new Date();
 
@@ -1960,6 +2009,22 @@ closeDeleteModal();
     <div id="achievementPopupName" class="achievementPopupName"></div>
     <div id="achievementPopupText" class="achievementPopupText"></div>
   </div>
+</div>
+<!-- 日記モーダル -->
+<div id="diaryModal" class="modal">
+
+    <div class="modalBox">
+
+        <div id="diaryContent"></div>
+
+        <br>
+
+        <button onclick="closeDiary()">
+            📕 閉じる
+        </button>
+
+    </div>
+
 </div>
 </body>
 </html>
