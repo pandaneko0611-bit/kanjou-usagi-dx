@@ -1411,7 +1411,7 @@ onclick="openDiary(${index})">
 
 <button
 class="deleteBtn"
-onclick="askDelete(${index})">
+onclick="event.stopPropagation(); askDelete(${index})">
 🐰🧹
 </button>
 
