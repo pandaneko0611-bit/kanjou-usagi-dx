@@ -1400,7 +1400,9 @@ function renderDiary(){
 .forEach((d, index) => {
 
 html += `
-<div class="memoryBook">
+<div
+class="memoryBook"
+onclick="openDiary(${index})">
 
 <button
 class="deleteBtn"
@@ -1418,14 +1420,6 @@ onclick="askDelete(${index})">
 大切にしまっていた思い出です
 
 </div>
-
-<button
-class="openBookBtn"
-onclick="openDiary(${index})"
-
-📖 開く
-
-</button>
 
 </div>
 `;
