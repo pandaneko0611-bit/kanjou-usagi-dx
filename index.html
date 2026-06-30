@@ -786,6 +786,21 @@ placeholder="今日のひとこと🐰"
 🏆 実績
 </button>
 
+<button onclick="backupData()">
+💾 バックアップ保存
+</button>
+
+<button onclick="restoreData()">
+📥 バックアップ復元
+</button>
+
+<input
+type="file"
+id="restoreFile"
+accept=".json"
+style="display:none"
+onchange="loadBackup(event)">
+
 </div>
 
 </div>
@@ -1954,6 +1969,148 @@ document
 .classList.remove("show");
 
 }
+function backupData(){
+
+const backup = {
+
+version:"3.4",
+
+rabbitHP:
+localStorage.getItem("rabbitHP"),
+
+treasure:
+localStorage.getItem("treasure"),
+
+treasureOpened:
+localStorage.getItem("treasureOpened"),
+
+loginStreak:
+localStorage.getItem("loginStreak"),
+
+lastLogin:
+localStorage.getItem("lastLogin"),
+
+diaries:
+JSON.parse(localStorage.getItem("diaries")) || [],
+
+achievement:
+JSON.parse(localStorage.getItem("achievement")) || [],
+
+friendEmoji:
+localStorage.getItem("friendEmoji"),
+
+friendName:
+localStorage.getItem("friendName"),
+
+friendMessage:
+localStorage.getItem("friendMessage")
+
+};
+
+const blob =
+new Blob(
+[JSON.stringify(backup,null,2)],
+{type:"application/json"}
+);
+
+const a =
+document.createElement("a");
+
+a.href =
+URL.createObjectURL(blob);
+
+a.download =
+"emotionRabbitBackup.json";
+
+a.click();
+
+URL.revokeObjectURL(a.href);
+
+alert("🐰💾 バックアップを保存しました！");
+}
+
+function restoreData(){
+
+document
+.getElementById("restoreFile")
+.click();
+
+}
+function loadBackup(event){
+
+const file =
+event.target.files[0];
+
+if(!file) return;
+
+const reader =
+new FileReader();
+
+reader.onload=function(e){
+
+const data =
+JSON.parse(e.target.result);
+
+localStorage.setItem(
+"rabbitHP",
+data.rabbitHP
+);
+
+localStorage.setItem(
+"treasure",
+data.treasure
+);
+
+localStorage.setItem(
+"treasureOpened",
+data.treasureOpened
+);
+
+localStorage.setItem(
+"loginStreak",
+data.loginStreak
+);
+
+localStorage.setItem(
+"lastLogin",
+data.lastLogin
+);
+
+localStorage.setItem(
+"friendEmoji",
+data.friendEmoji
+);
+
+localStorage.setItem(
+"friendName",
+data.friendName
+);
+
+localStorage.setItem(
+"friendMessage",
+data.friendMessage
+);
+
+localStorage.setItem(
+"diaries",
+JSON.stringify(data.diaries)
+);
+
+localStorage.setItem(
+"achievement",
+JSON.stringify(data.achievement)
+);
+
+alert("🐰✨ 復元しました！");
+
+location.reload();
+
+};
+
+reader.readAsText(file);
+
+}
+
 document
 .getElementById("deleteYes")
 .onclick=function(){
